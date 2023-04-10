@@ -50,7 +50,6 @@ function FetchNestData() {
                 body: JSON.stringify(jsonData),
             }).then((res) => {
                 res.json().then((resp) => {
-                    getTodo();
                     RefreshPage();
                 })
             })

@@ -3,6 +3,10 @@ import { useState } from "react"
 export default function PostAPIData() {
     const [name, setName] = useState("");
 
+    function RefreshPage() {
+        window.location.reload(false);
+      }
+
     function saveUser() {
         console.log({ name });
         console.log('name', name);
@@ -18,7 +22,7 @@ export default function PostAPIData() {
             console.log('result', res);
             res.json().then((resp) => {
                 console.log('resp', resp);
-
+                RefreshPage();
             })
 
         })
