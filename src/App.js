@@ -6,8 +6,8 @@ function App() {
 
     <div className="App">
       <h1>To Do list</h1>
-        <PostAPIData />
-        <FetchNestData />
+      <PostAPIData />
+      <FetchNestData />
     </div>
   );
 }

@@ -5,7 +5,7 @@ export default function PostAPIData() {
 
     function RefreshPage() {
         window.location.reload(false);
-      }
+    }
 
     function saveUser() {
         console.log({ name });

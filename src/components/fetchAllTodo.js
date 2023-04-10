@@ -22,7 +22,7 @@ function FetchNestData() {
     }
     function RefreshPage() {
         window.location.reload(false);
-      }
+    }
     const checkComplete = (id) => {
         const done = todos.filter(todo => todo.id === id);
 
