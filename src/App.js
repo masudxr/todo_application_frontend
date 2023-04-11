@@ -1,7 +1,7 @@
 import FetchNestData from './components/fetchAllTodo';
 import PostAPIData from './components/postApi';
 
-function App() {
+export default function App() {
   return (
 
     <div className="App">
@@ -11,5 +11,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

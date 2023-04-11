@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function FooterApi() {
+export default function Footer() {
   const [checkAll, setCheckAll] = useState(false)
   const [todo, setTodo] = useState(false)
   useEffect(() => {

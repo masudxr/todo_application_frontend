@@ -1,40 +1,30 @@
 import { useState } from "react"
 
 export default function PostAPIData() {
-    const [name, setName] = useState("");
+    const [todo, setTodo] = useState("");
 
-    function RefreshPage() {
-        window.location.reload(false);
-    }
-
-    function saveUser() {
-        console.log({ name });
-        console.log('name', name);
+    async function saveUser() {
         const jsonData = {
-            "title": name,
+            "title": todo, 
             "completed": false
         }
-        fetch("http://localhost:3000/todo", {
+        const res = await fetch("http://localhost:3000/todo", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(jsonData),
-        }).then((res) => {
-            console.log('result', res);
-            res.json().then((resp) => {
-                console.log('resp', resp);
-                RefreshPage();
-            })
-
         })
-
+        console.log('res json:', res)
+        const data = await res.json();
+        console.log('save json:', data)
+        setTodo(data);
     }
+    
     return (
         <div>
             <form>
-                <input type="text" value={name} onChange={(e) => { setName(e.target.value) }} name="title" required placeholder='Task Name' />
+                <input type="text" value={todo} onChange={(e) => { setTodo(e.target.value) }} name="title" required placeholder='Task Name' />
                 <button type="button" onClick={saveUser} > Create Todo</button>
             </form>
         </div>
-
     )
 }
