@@ -8,7 +8,6 @@ export default function PostAPIData() {
             "title": todo, 
             "completed": false
         }
-
         const res = await fetch("http://localhost:3000/todo", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
