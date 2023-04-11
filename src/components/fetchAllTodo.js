@@ -25,13 +25,12 @@ function FetchNestData() {
             const jsonData = {
                 "completed": false,
             }
-            const res = await fetch(`http://localhost:3000/todo/${id}`, {
+            await fetch(`http://localhost:3000/todo/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(jsonData),
             })
-            const json = await res.json();
-            console.log('updated Result:', json);
+            console.log('Need To Done This Todo Very Carefully');
             getTodo();
 
         }
@@ -39,24 +38,22 @@ function FetchNestData() {
             const jsonData = {
                 "completed": true,
             }
-            const res = await fetch(`http://localhost:3000/todo/${id}`, {
+            await fetch(`http://localhost:3000/todo/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(jsonData),
             })
-            const json = await res.json();
-            console.log('updated Result:', json);
+            console.log('Alhamdulillah Successfully Done This.');
             getTodo();
 
         }
     }
 
     async function deleteTodo(id) {
-        const del = await fetch(`http://localhost:3000/todo/${id}`, {
+        await fetch(`http://localhost:3000/todo/${id}`, {
             method: 'Delete',
         })
-        const json = await del.json();
-        console.log('del delete result:', json);
+        console.log('Removed This Todo Bcoz of Done');
         getTodo();
     }
     return (

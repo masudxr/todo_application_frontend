@@ -7,21 +7,13 @@ export default function Footer() {
     getTodo();
 
   }, [])
-  function getTodo() {
-    let mounted = true;
-    fetch("http://localhost:3000/todo")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('fetch data:', { data });
-        if (!mounted) {
-          return;
-        }
-        setTodo(data);
-      });
-    return () => {
-      mounted = false;
-    };
+  async function getTodo() {
+    const get = await fetch("http://localhost:3000/todo")
+    const json = await get.json()
+    setTodo(json);
+
   }
+
   const handleCheckAll = () => {
     const newTodos = [...todo]
     newTodos.forEach(todo => {
