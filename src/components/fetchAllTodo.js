@@ -1,22 +1,38 @@
 import React, { useState, useEffect, } from "react";
 
-function FetchNestData() {
+export default function FetchNestData() {
     const [todos, setTodos] = useState([]);
+    const [todo, setTodo] = useState("");
+
     useEffect(() => {
         getTodo();
 
     }, [])
+    async function saveUser() {
+        const jsonData = {
+            "title": todo,
+            "completed": false
+        }
+        const res = await fetch("http://localhost:3000/todo", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(jsonData),
+        })
+        console.log('res json:', res)
+        const data = await res.json();
+        console.log('save json:', data)
+        getTodo();
+    }
     async function getTodo() {
         const response = await fetch("http://localhost:3000/todo")
         const json = await response.json();
         const falseValue = json.filter(todo => todo.completed !== true);
         const trueValue = json.filter(todo => todo.completed === true);
-            for (let i = 0; i < trueValue.length; i++) {
-                falseValue.push(trueValue[i])
-            }
+        for (let i = 0; i < trueValue.length; i++) {
+            falseValue.push(trueValue[i])
+        }
         setTodos(falseValue);
     }
-
 
     async function checkComplete(id) {
         const done = todos.filter(todo => todo.id === id);
@@ -45,10 +61,8 @@ function FetchNestData() {
             })
             console.log('Alhamdulillah Successfully Done This.');
             getTodo();
-
         }
     }
-
     async function deleteTodo(id) {
         await fetch(`http://localhost:3000/todo/${id}`, {
             method: 'Delete',
@@ -57,7 +71,11 @@ function FetchNestData() {
         getTodo();
     }
     return (
-        <div className="row">
+        <div>
+            <form>
+                <input type="text" value={todo} onChange={(e) => { setTodo(e.target.value) }} name="title" required placeholder='Task Name' />
+                <button type="button" onClick={saveUser} > Create Todo</button>
+            </form>
             <table>
                 {
                     todos.map((items) =>
@@ -74,5 +92,3 @@ function FetchNestData() {
         </div>
     )
 }
-
-export default FetchNestData;

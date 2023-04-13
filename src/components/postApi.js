@@ -5,7 +5,7 @@ export default function PostAPIData() {
 
     async function saveUser() {
         const jsonData = {
-            "title": todo, 
+            "title": todo,
             "completed": false
         }
         const res = await fetch("http://localhost:3000/todo", {
@@ -16,14 +16,14 @@ export default function PostAPIData() {
         console.log('res json:', res)
         const data = await res.json();
         console.log('save json:', data)
-        setTodo(data);
     }
+    console.log(todo);
     return (
-        <div>
+        // <div>
             <form>
                 <input type="text" value={todo} onChange={(e) => { setTodo(e.target.value) }} name="title" required placeholder='Task Name' />
                 <button type="button" onClick={saveUser} > Create Todo</button>
             </form>
-        </div>
+        // </div>
     )
 }
